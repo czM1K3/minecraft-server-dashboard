@@ -13,29 +13,29 @@ This is web dashboard for bukkit/spigot/paper server. It requires [servertap](ht
 	```yaml
 	version: "3"
 	services:
-	  minecraft:
-	    image: "czm1k3/paper-docker:1.19.2"
-		name: minecraft
-	    ports:
-		 - "25565:25565"
-		environment:
-		 - MEMORY=2048
-		volumes:
-		 - ./data:/data
-		tty: true
-		stdin_open: true
-	  dashboard:
-	    image: ghcr.io/czm1k3/minecraft-server-dashboard
-		name: dashboard
-		links:
-		 - minecraft
-		ports:
-		 - "8000:8000"
-		environment:
-		 - SERVER_NAME=My Minecraft Server
-	     - SERVER_ADDRESS=localhost
-	     - SERVERTAP_ADDRESS=http://minecraft:4567
-	     - MAP_ADDRESS=http://localhost:8100
+		minecraft:
+			image: "czm1k3/paper-docker:1.19.2"
+			name: minecraft
+			ports:
+			 - "25565:25565"
+			environment:
+			 - MEMORY=2048
+			volumes:
+			 - ./data:/data
+			tty: true
+			stdin_open: true
+		dashboard:
+			image: ghcr.io/czm1k3/minecraft-server-dashboard
+			name: dashboard
+			links:
+			 - minecraft
+			ports:
+			 - "8000:8000"
+			environment:
+			 - SERVER_NAME=My Minecraft Server
+			- SERVER_ADDRESS=localhost
+			 - SERVERTAP_ADDRESS=http://minecraft:4567
+			 - MAP_ADDRESS=http://localhost:8100
 	```
 1. Start server and wait few minutes to start up
 	```bash
