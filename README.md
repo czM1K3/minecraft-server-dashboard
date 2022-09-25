@@ -15,7 +15,7 @@ This is web dashboard for bukkit/spigot/paper server. It requires [servertap](ht
    services:
      minecraft:
        image: "czm1k3/paper-docker:1.19.2"
-       name: minecraft
+       container_name: minecraft
        ports:
         - "25565:25565"
        environment:
@@ -26,14 +26,14 @@ This is web dashboard for bukkit/spigot/paper server. It requires [servertap](ht
        stdin_open: true
      dashboard:
        image: ghcr.io/czm1k3/minecraft-server-dashboard
-       name: dashboard
+       container_name: dashboard
        links:
         - minecraft
        ports:
         - "8000:8000"
        environment:
         - SERVER_NAME=My Minecraft Server
-       - SERVER_ADDRESS=localhost
+        - SERVER_ADDRESS=localhost
         - SERVERTAP_ADDRESS=http://minecraft:4567
         - MAP_ADDRESS=http://localhost:8100
 	```
