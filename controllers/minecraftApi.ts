@@ -1,7 +1,7 @@
 import { PlayersRouteType, ServerRouteType } from "../types/minecraftApi.ts";
 
-const serverAddress = Deno.env.get("SERVER_ADDRESS");
-if (!serverAddress) throw new Error("SERVER_ADDRESS is not defined");
+const serverAddress = Deno.env.get("SERVERTAP_ADDRESS");
+if (!serverAddress) throw new Error("SERVERTAP_ADDRESS is not defined");
 
 const ServerRoute = async () => {
 	try {

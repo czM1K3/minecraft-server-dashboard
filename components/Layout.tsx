@@ -22,7 +22,7 @@ const Layout: FunctionalComponent = ({ children }) => {
 				<div
 					className="bg-image vh-100"
 					style={{
-						backgroundImage: "url('/background.png')",
+						backgroundImage: "url('/background.webp')",
 					}}
 				>
 					{children}

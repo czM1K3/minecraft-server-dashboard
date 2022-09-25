@@ -6,6 +6,9 @@ import MinecraftApiController from "../controllers/minecraftApi.ts";
 import Error from "../components/Error.tsx";
 import { getTimestamp } from "../utils/timestamp.ts";
 
+const serverAddress = Deno.env.get("SERVER_ADDRESS") ?? "localhost";
+const serverName = Deno.env.get("SERVER_NAME") ?? "My Server name";
+
 type Props = ServerRouteType | null;
 
 export const handler: Handlers<Props> = {
@@ -27,7 +30,11 @@ const Home: FunctionalComponent<PageProps<Props>> = ({ data }) => {
           height: "max-content"
         }}
       >
-        <h1 className="text-white fw-bold">{data.motd}</h1>
+        <h1 className="text-white fw-bold">{serverName}</h1>
+        <h2 className="text-white">
+          {`Join at: `}
+          <span className="fw-bold">{serverAddress}</span>  
+        </h2>
 
         <p className="text-white m-0">Currently playing: {data.onlinePlayers}/{data.maxPlayers}</p>
         <p className="text-white m-0">Version: {data.version}</p>
