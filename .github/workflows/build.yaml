@@ -17,48 +17,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
         id: buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Login to GHCR
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Docker meta amd64
-        id: containerMeta1
-        uses: docker/metadata-action@v3
+      - name: Docker meta
+        id: containerMeta
+        uses: docker/metadata-action@v4
         with:
           images: |
             ghcr.io/czm1k3/minecraft-server-dashboard
           tags: |
             type=raw,value=latest
             type=sha,enable=true,priority=100,prefix=,suffix=,format=short
-      - name: Build and push amd64
-        uses: docker/build-push-action@v2
+      - name: Build and push
+        uses: docker/build-push-action@v3
         with:
           context: .
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ steps.containerMeta1.outputs.tags }}
-          labels: ${{ steps.containerMeta1.outputs.labels }}
-      - name: Docker meta arm64
-        id: containerMeta2
-        uses: docker/metadata-action@v3
-        with:
-          images: |
-            ghcr.io/czm1k3/minecraft-server-dashboard
-          tags: |
-            type=raw,value=arm-latest
-            type=sha,enable=true,priority=100,prefix=arm-,suffix=,format=short
-      - name: Build and push arm64
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: Dockerfile.arm
-          platforms: linux/arm64
-          push: true
-          tags: ${{ steps.containerMeta2.outputs.tags }}
-          labels: ${{ steps.containerMeta2.outputs.labels }}
+          tags: ${{ steps.containerMeta.outputs.tags }}
+          labels: ${{ steps.containerMeta.outputs.labels }}
+          

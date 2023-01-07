@@ -2,18 +2,19 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { FunctionalComponent } from "preact";
 import Layout from "../components/Layout.tsx";
 import MinecraftApiController from "../controllers/minecraftApi.ts";
-import { PlayersRouteType } from "../types/minecraftApi.ts";
+import { StrippedPlayersRouteType } from "../types/minecraftApi.ts";
 import Error from "../components/Error.tsx";
+import PlayersInfo from "../islands/PlayersInfo.tsx";
 
-export const handler: Handlers<PlayersRouteType | null> = {
+export const handler: Handlers<StrippedPlayersRouteType | null> = {
   GET: async (_, ctx) => {
-    const players = await MinecraftApiController.PlayersRoute();
+    const players = await MinecraftApiController.PlayersRouteStripped();
 
     return ctx.render(players);
   },
 };
 
-const Home: FunctionalComponent<PageProps<PlayersRouteType | null>> = ({ data }) => {
+const Home: FunctionalComponent<PageProps<StrippedPlayersRouteType | null>> = ({ data }) => {
   if (!data)
     return (
       <Error />
@@ -44,20 +45,7 @@ const Home: FunctionalComponent<PageProps<PlayersRouteType | null>> = ({ data })
             overflowY: "auto",
           }}
         >
-          <ul className="list-group">
-            {data.map((player) => (
-              <li className="list-group-item text-center" key={player.displayName}>
-                <h2>{player.displayName}</h2>
-                <div>HP: {player.health}/20</div>
-                <div>Hunger: {player.hunger}/20</div>
-                <div>Dimension: {player.dimension}</div>
-                <div>Role: {player.op ? "Admin" : "Player"}</div>
-                {player.gamemode !== "SURVIVAL" && (
-                  <div>Gamemode: {player.gamemode}</div>
-                )}
-              </li>
-            ))}
-          </ul>
+          <PlayersInfo data={data} />
         </div>
       </div>
     </Layout>

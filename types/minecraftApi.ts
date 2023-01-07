@@ -50,3 +50,19 @@ export type PlayersRouteType = {
 	gamemode: string;
 	lastPlayed: number;
 }[];
+
+export type StrippedServerRouteType = {
+	onlinePlayers: number;
+	maxPlayers: number;
+	version: string;
+	uptime: number;
+};
+
+export type StrippedPlayersRouteType = {
+	displayName: string;
+	health: number;
+	hunger: number;
+	dimension: string;
+	op: boolean;
+	gamemode: string;
+}[];

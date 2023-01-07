@@ -1,19 +1,19 @@
 import type { FunctionalComponent } from "preact";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import Layout from "../components/Layout.tsx";
-import { ServerRouteType } from "../types/minecraftApi.ts";
+import { StrippedServerRouteType } from "../types/minecraftApi.ts";
 import MinecraftApiController from "../controllers/minecraftApi.ts";
 import Error from "../components/Error.tsx";
-import { getTimestamp } from "../utils/timestamp.ts";
+import ServerInfo from "../islands/ServerInfo.tsx";
 
 const serverAddress = Deno.env.get("SERVER_ADDRESS") ?? "localhost";
 const serverName = Deno.env.get("SERVER_NAME") ?? "My Server name";
 
-type Props = ServerRouteType | null;
+type Props = StrippedServerRouteType | null;
 
 export const handler: Handlers<Props> = {
   GET: async (_, ctx) => {
-    const server = await MinecraftApiController.ServerRoute();
+    const server = await MinecraftApiController.ServerRouteStripped();
 
     return ctx.render(server);
   },
@@ -36,9 +36,7 @@ const Home: FunctionalComponent<PageProps<Props>> = ({ data }) => {
           <span className="fw-bold">{serverAddress}</span>  
         </h2>
 
-        <p className="text-white m-0">Currently playing: {data.onlinePlayers}/{data.maxPlayers}</p>
-        <p className="text-white m-0">Version: {data.version}</p>
-        <p className="text-white">Uptime: {getTimestamp(data.health.uptime)}</p>
+        <ServerInfo data={data} />
 
         <div className="d-flex">
           <a href="/players" className="btn btn-rounded btn-primary m-1">
