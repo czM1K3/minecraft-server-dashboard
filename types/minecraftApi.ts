@@ -58,11 +58,13 @@ export type StrippedServerRouteType = {
 	uptime: number;
 };
 
-export type StrippedPlayersRouteType = {
+export type StrippedPlayerRouteType = {
 	displayName: string;
 	health: number;
 	hunger: number;
 	dimension: string;
 	op: boolean;
 	gamemode: string;
-}[];
+};
+
+export type StrippedPlayersRouteType = StrippedPlayerRouteType[];

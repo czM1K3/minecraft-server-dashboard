@@ -49,7 +49,7 @@ const PlayersRouteStripped = async (): Promise<StrippedPlayersRouteType | null> 
 	}
 	return data.map((p) => ({
 		dimension: p.dimension,
-		displayName: p.dimension,
+		displayName: p.displayName,
 		gamemode: p.gamemode,
 		health: p.health,
 		hunger: p.hunger,

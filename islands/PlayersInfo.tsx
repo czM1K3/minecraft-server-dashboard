@@ -1,7 +1,7 @@
 import type { FunctionalComponent } from "preact";
 import { useEffect, useState } from "preact/hooks";
+import PlayerInfo from "../components/SinglePlayer.tsx";
 import { StrippedPlayersRouteType } from "../types/minecraftApi.ts";
-import { getTimestamp } from "../utils/timestamp.ts";
 
 type PlayersInfoProps = {
 	data: StrippedPlayersRouteType;
@@ -33,16 +33,7 @@ const PlayersInfo: FunctionalComponent<PlayersInfoProps> = ({ data }) => {
 	return (
 		<ul className="list-group">
 			{players.map((player) => (
-				<li className="list-group-item text-center" key={player.displayName}>
-					<h2>{player.displayName}</h2>
-					<div>HP: {player.health}/20</div>
-					<div>Hunger: {player.hunger}/20</div>
-					<div>Dimension: {player.dimension}</div>
-					<div>Role: {player.op ? "Admin" : "Player"}</div>
-					{player.gamemode !== "SURVIVAL" && (
-						<div>Gamemode: {player.gamemode}</div>
-					)}
-				</li>
+				<PlayerInfo data={player} key={player.displayName} />
 			))}
 		</ul>
 	);
