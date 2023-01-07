@@ -7,3 +7,4 @@
 Dockerfile
 Dockerfile.arm
 README.md
+deno.lock
