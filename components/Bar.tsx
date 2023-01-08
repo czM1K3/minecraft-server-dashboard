@@ -9,12 +9,15 @@ export enum BarType {
 type BarProps = {
 	count: number;
 	type: BarType;
-}
+};
 
-const imageProperties = { imageRendering: "pixelated", width: "20px", padding: "1px" };
+const imageProperties = {
+	imageRendering: "pixelated",
+	width: "20px",
+	padding: "1px",
+};
 
 const Bar: FunctionalComponent<BarProps> = ({ count, type }) => {
-
 	const counts = useMemo(() => {
 		const fixedCount = Math.ceil(count);
 		return {
@@ -27,13 +30,21 @@ const Bar: FunctionalComponent<BarProps> = ({ count, type }) => {
 	return (
 		<div>
 			{counts.full.map((_item, index) => (
-				<img src={`/assets/full-${type}.png`} key={index} style={imageProperties} />
+				<img
+					src={`/assets/full-${type}.png`}
+					key={index}
+					style={imageProperties}
+				/>
 			))}
 			{counts.hasHalf && (
 				<img src={`/assets/half-${type}.png`} style={imageProperties} />
 			)}
 			{counts.empty.map((_item, index) => (
-				<img src={`/assets/no-${type}.png`} key={index} style={imageProperties} />
+				<img
+					src={`/assets/no-${type}.png`}
+					key={index}
+					style={imageProperties}
+				/>
 			))}
 		</div>
 	);

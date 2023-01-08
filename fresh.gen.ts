@@ -13,20 +13,20 @@ import * as $$0 from "./islands/PlayersInfo.tsx";
 import * as $$1 from "./islands/ServerInfo.tsx";
 
 const manifest = {
-  routes: {
-    "./routes/_404.tsx": $0,
-    "./routes/api/players.ts": $1,
-    "./routes/api/server.ts": $2,
-    "./routes/index.tsx": $3,
-    "./routes/map.tsx": $4,
-    "./routes/players.tsx": $5,
-  },
-  islands: {
-    "./islands/PlayersInfo.tsx": $$0,
-    "./islands/ServerInfo.tsx": $$1,
-  },
-  baseUrl: import.meta.url,
-  config,
+	routes: {
+		"./routes/_404.tsx": $0,
+		"./routes/api/players.ts": $1,
+		"./routes/api/server.ts": $2,
+		"./routes/index.tsx": $3,
+		"./routes/map.tsx": $4,
+		"./routes/players.tsx": $5,
+	},
+	islands: {
+		"./islands/PlayersInfo.tsx": $$0,
+		"./islands/ServerInfo.tsx": $$1,
+	},
+	baseUrl: import.meta.url,
+	config,
 };
 
 export default manifest;

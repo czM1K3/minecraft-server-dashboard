@@ -7,7 +7,7 @@ export const getTimestamp = (seconds: number) => {
 		text = (Math.floor(seconds / 3600) % 24) + " hours " + text;
 	}
 	if (seconds >= 86400) {
-		 text = (Math.floor(seconds / 86400)) + " days " + text;
+		text = (Math.floor(seconds / 86400)) + " days " + text;
 	}
 	return text;
 };

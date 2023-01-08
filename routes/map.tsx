@@ -15,7 +15,9 @@ const Home: FunctionalComponent = () => {
 					top: "6px",
 					left: "150px",
 				}}
-			>Back</a>
+			>
+				Back
+			</a>
 			<iframe
 				src={mapAddress}
 				style={{
@@ -26,6 +28,6 @@ const Home: FunctionalComponent = () => {
 			/>
 		</Layout>
 	);
-}
+};
 
 export default Home;

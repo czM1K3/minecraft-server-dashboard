@@ -13,7 +13,7 @@ const PlayersInfo: FunctionalComponent<PlayersInfoProps> = ({ data }) => {
 	useEffect(() => {
 		const interval = setInterval(() => {
 			fetch("/api/players").catch(() => {
-				console.error("Failed to fetch")
+				console.error("Failed to fetch");
 			}).then(
 				async (
 					res,
